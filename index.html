@@ -1,1 +1,672 @@
-# malaysian-cuisine
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaysian Cuisine Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #e74c3c;
+            --secondary: #f39c12;
+            --accent: #27ae60;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --card-bg: rgba(255, 255, 255, 0.92);
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: linear-gradient(to right, #e74c3c, #f39c12);
+            z-index: -1;
+            border-radius: 0 0 50% 50%/0 0 100% 100%;
+            transform: scaleX(1.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            margin-bottom: 30px;
+            color: white;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 25px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .tagline {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            font-weight: 500;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+Yuri(oct), [7/31/2025 1:57 AM]
+.card-header {
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .card-header i {
+            font-size: 2rem;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .card-content li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card-content li::before {
+            content: "•";
+            color: var(--primary);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .examples {
+            background: rgba(231, 76, 60, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .examples-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .flavor-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .flavor-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        .flavor-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            background: rgba(231, 76, 60, 0.1);
+            width: 80px;
+            height: 80px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .dish-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .dish-table th {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        .dish-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .dish-table tr:nth-child(even) {
+            background: rgba(231, 76, 60, 0.03);
+        }
+
+        .dish-table tr:hover {
+            background: rgba(243, 156, 18, 0.05);
+        }
+
+        .summary {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .tip-box {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 25px 0;
+        }
+
+        .food-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 200px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+Yuri(oct), [7/31/2025 1:57 AM]
+.gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            color: #666;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h1>Malaysian Cuisine Guide</h1>
+            <p class="subtitle">Discover the rich flavors and cultural diversity of Malaysia's culinary heritage</p>
+            <div class="tagline">
+                Spicy • Savory • Sweet • Aromatic
+            </div>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="dietary">Dietary Guide</button>
+            <button class="tab-btn" data-tab="flavors">Flavors</button>
+            <button class="tab-btn" data-tab="health">Health & Safety</button>
+            <button class="tab-btn" data-tab="gallery">Food Gallery</button>
+        </div>
+
+        <div id="dietary" class="tab-content active">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-mosque"></i>
+                        <h3>For Muslims (Halal food)</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Many Malaysian foods are Halal, especially Malay cuisine:</p>
+                        <ul>
+                            <li>Pork-free</li>
+                            <li>Uses halal meat</li>
+                            <li>Prepared following Islamic dietary laws</li>
+                        </ul>
+                        <p><strong>Tip:</strong> Look for places labeled "Halal" or certified by JAKIM.</p>
+                        <div class="examples">
+                            <div class="examples-title"><i class="fas fa-utensils"></i> Examples:</div>
+                            <p>Nasi lemak, satay, rendang, roti canai</p>
+                        </div>
+                    </div>
+                </div>
+
+Yuri(oct), [7/31/2025 1:57 AM]
+<div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-om"></i>
+                        <h3>For Hindus</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Most Hindus avoid beef. Indian-Malay dishes often offer vegetarian options.</p>
+                        <div class="examples">
+                            <div class="examples-title"><i class="fas fa-utensils"></i> Examples:</div>
+                            <p>Vegetarian curry, dosa, roti with dhal, banana leaf rice</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-yin-yang"></i>
+                        <h3>For Buddhists/Chinese</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Some Chinese Malaysian food includes pork. Many restaurants offer vegetarian or seafood options.</p>
+                        <div class="examples">
+                            <div class="examples-title"><i class="fas fa-utensils"></i> Examples:</div>
+                            <p>Char kway teow (pork-free), stir-fries, tofu dishes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-star-of-david"></i>
+                        <h3>For Other Religions</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Kosher or strict vegetarian eaters should be cautious. Malaysia offers vegetarian and vegan options.</p>
+                        <div class="examples">
+                            <div class="examples-title"><i class="fas fa-utensils"></i> Tip:</div>
+                            <p>Seek out vegetarian or Indian vegetarian restaurants</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary">
+                <h3><i class="fas fa-clipboard-check"></i> Summary:</h3>
+                <p>Malaysia is a multicultural country with diverse food options. Everyone can find suitable dishes by checking ingredients or asking for specific preparations like halal, vegetarian, or no beef/pork options.</p>
+            </div>
+        </div>
+
+Yuri(oct), [7/31/2025 1:57 AM]
+<div id="flavors" class="tab-content">
+            <h2 style="text-align: center; margin: 30px 0; color: var(--dark);">The Flavor Spectrum of Malaysian Cuisine</h2>
+            
+            <div class="grid-3">
+                <div class="flavor-card">
+                    <i class="fas fa-pepper-hot"></i>
+                    <h3>Spicy</h3>
+                    <p>Chili is widely used, especially in sambal (spicy chili paste)</p>
+                </div>
+                
+                <div class="flavor-card">
+                    <i class="fas fa-drumstick-bite"></i>
+                    <h3>Savory & Umami</h3>
+                    <p>Fermented ingredients like shrimp paste (belacan), soy sauce</p>
+                </div>
+                
+                <div class="flavor-card">
+                    <i class="fas fa-candy-cane"></i>
+                    <h3>Sweet and Creamy</h3>
+                    <p>Coconut milk and palm sugar in curries and desserts</p>
+                </div>
+                
+                <div class="flavor-card">
+                    <i class="fas fa-lemon"></i>
+                    <h3>Tangy & Sour</h3>
+                    <p>Tamarind, lime, and vinegar in dishes like asam laksa</p>
+                </div>
+                
+                <div class="flavor-card">
+                    <i class="fas fa-wind"></i>
+                    <h3>Aromatic</h3>
+                    <p>Lemongrass, ginger, galangal, turmeric, pandan leaves</p>
+                </div>
+                
+                <div class="flavor-card">
+                    <i class="fas fa-fire"></i>
+                    <h3>Complex & Balanced</h3>
+                    <p>Harmony of multiple flavors in each dish</p>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin: 40px 0 20px; color: var(--dark);">Iconic Malaysian Dishes</h3>
+            <table class="dish-table">
+                <thead>
+                    <tr>
+                        <th>Dish</th>
+                        <th>Flavor Profile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nasi Lemak</strong></td>
+                        <td>Creamy coconut rice, spicy sambal, salty anchovies, crunchy peanuts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Char Kway Teow</strong></td>
+                        <td>Smoky stir-fried noodles with soy sauce, chili, prawns</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Laksa</strong></td>
+                        <td>Spicy and sour noodle soup with rich broth</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Roti Canai</strong></td>
+                        <td>Flaky bread with curry - buttery, crispy, spicy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Satay</strong></td>
+                        <td>Grilled skewers with peanut sauce - sweet, smoky, nutty</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Teh Tarik</strong></td>
+                        <td>Pulled tea - strong, milky, slightly sweet</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+Yuri(oct), [7/31/2025 1:57 AM]
+<div id="health" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-heart"></i>
+                        <h3>Healthy Aspects</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li><strong>Herbs and spices:</strong> Turmeric, lemongrass, ginger - good for digestion</li>
+                            <li><strong>Fresh vegetables & fruits:</strong> Ulam salad, stir-fried greens, fruit rojak</li>
+                            <li><strong>Lean proteins:</strong> Grilled chicken (satay), tofu, fish, legumes</li>
+                            <li><strong>Rice-based meals:</strong> Balanced with proteins and vegetables</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Considerations</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li><strong>Fried & oily food:</strong> Char kway teow, roti canai</li>
+                            <li><strong>Coconut milk:</strong> High in saturated fat</li>
+                            <li><strong>Sweet drinks & desserts:</strong> Teh tarik, cendol are sugary</li>
+                            <li><strong>Large portions:</strong> Often carb-heavy with rice/noodles</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Clean & Safe Options</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Modern restaurants & cafes</li>
+                            <li>Halal-certified outlets</li>
+                            <li>Vegetarian/Indian/Malay restaurants</li>
+                            <li>Food courts in shopping malls</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h3>Be Cautious With</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Street food / Hawker stalls</li>
+                            <li>Wet markets / Older kopitiams</li>
+                            <li>Raw seafood from unknown vendors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h3><i class="fas fa-lightbulb"></i> Tips for Healthy & Safe Eating:</h3>
+                <ul>
+                    <li>Choose grilled or steamed over fried</li>
+                    <li>Opt for soupy dishes like assam laksa</li>
+                    <li>Ask for less sugar in drinks</li>
+                    <li>Add extra vegetables to your meal</li>
+                    <li>Eat where locals eat</li>
+                    <li>Choose freshly cooked, hot food</li>
+                </ul>
+            </div>
+        </div>
+
+Yuri(oct), [7/31/2025 1:57 AM]
+<div id="gallery" class="tab-content">
+            <h2 style="text-align: center; margin: 30px 0; color: var(--dark);">Malaysian Food Gallery</h2>
+            
+            <div class="food-gallery">
+                <div class="gallery-item">
+                    <img src="https://www.allrecipes.com/thmb/Ya-na4bJ3XbjrBKupLD9Br0d5Ks=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/AR-78938-Malaysian-Nasi-Lemak-gw-ddmfs-beauty-4x3-abe92d15c39b46bdb869b55f2d38fd46.jpg?q=80&w=2070&auto=format&fit=crop" alt=Nasi lemak served on a banana leaf with coconut rice topped with sambal spicy chili paste crispy anchovies roasted peanuts cucumber slices and a hard boiled egg arranged neatly in a vibrant and inviting presentation on a rustic wooden table evoking a sense of warmth and comfort>
+                    <div class="caption">Nasi Lemak - National Dish</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKr9G5Kbsiq7zyvqy9YcEWYGp_Pa_G_a_42A&s?q=80&w=2070&auto=format&fit=crop" alt="Satay">
+                    <div class="caption">Satay with Peanut Sauce</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.julieolive.co.uk/wp-content/uploads/2018/12/PB160106-768x719.jpg?q=80&w=2070&auto=format&fit=crop" alt="Roti Canai">
+                    <div class="caption">Roti Canai with Curry</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://static.ffx.io/images/$zoom_0.26647132351409347%2C$multiply_0.9841%2C$ratio_1.5%2C$width_756%2C$x_1%2C$y_0/t_crop_custom/q_86%2Cf_auto/f556e1b4bb83367aab58fc1aed67ab4297b8a32b?q=80&w=1974&auto=format&fit=crop" alt="Laksa">
+                    <div class="caption">Spicy Laksa Soup</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://tasteofnusa.com/wp-content/uploads/2023/09/beef-rendang-2.jpg?q=80&w=1935&auto=format&fit=crop" alt="Rendang">
+                    <div class="caption">Beef Rendang</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.willflyforfood.net/wp-content/uploads/2022/05/malaysian-desserts-apam-balik.jpg.webp?q=80&w=2070&auto=format&fit=crop" alt="Desserts">
+                    <div class="caption">Malaysian Desserts</div>
+                </div>
+            </div>
+            
+            <div class="summary">
+                <h3><i class="fas fa-utensils"></i> Culinary Diversity</h3>
+                <p>Malaysian cuisine offers a remarkable variety of dishes reflecting Malay, Chinese, Indian, and indigenous influences. From street food to fine dining, the flavors are as diverse as the culture itself.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>Malaysian Cuisine Guide | Discover the Flavors of Malaysia</p>
+            <p>© 2025 | All Rights Reserved</p>
+        </footer>
+    </div>
